@@ -1,15 +1,15 @@
 package com.app.safabooking.controller;
 
 import com.app.safabooking.model.Hamburguesa;
+import com.app.safabooking.model.Hamburgueseria;
 import com.app.safabooking.service.HamburguesaService;
+import com.app.safabooking.service.HamburgueseriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -17,9 +17,16 @@ public class HamburguesaController {
 
     @Autowired
     private HamburguesaService burguerService;
+    @Autowired
+    private HamburgueseriaService hamburgueseriaService;
+
+
+
 
     @RequestMapping("/burguers")
-    public List<Hamburguesa> getHamburguesas(){
+    public List<Hamburguesa> getHamburguesas(@RequestParam String ciudad,
+                                             @RequestParam LocalDate fechaInicio,
+                                             @RequestParam LocalDate fechaFin){
         return burguerService.getAll() ;
     }
 
@@ -32,9 +39,23 @@ public class HamburguesaController {
     }
 
 
-    @PostMapping("/burgues/save")
-    public void guardarHamburguesa(@RequestBody Hamburguesa hamburguesa){
-        Hamburguesa burguer = burguerService.getById(hamburguesa.getId());
-
+    @GetMapping("/burguers/new")
+    public ModelAndView nuevaHamburguesa(){
+        ModelAndView model = new ModelAndView("nuevaHamburguesa");
+        Hamburguesa hamburguesa = new Hamburguesa();
+        List<Hamburgueseria> hamburgueserias = hamburgueseriaService.getAll();
+        model.addObject("listHamburgueserias", hamburgueserias);
+        model.addObject("hamburguesa", hamburguesa);
+        return model;
     }
+
+
+    @PostMapping("/burgues/save")
+    public void guardarHamburguesa( @RequestBody @ModelAttribute("hamburguesa") Hamburguesa hamburguesa){
+        burguerService.guardarHamburguesa(hamburguesa);
+    }
+
+
+
+
 }

@@ -11,7 +11,12 @@ import java.util.List;
 @Repository
 public interface HamburguesaRepository extends JpaRepository<Hamburguesa, Integer> {
 
-    @Query(value = "select id, nombre,valor_calorico from hamburguesa ", nativeQuery = true)
+
+    @Query(value = "select h from Hamburguesa h order by h.id ")
     List<Hamburguesa> obtenerBurguers();
+
+
+
+
 }
 
