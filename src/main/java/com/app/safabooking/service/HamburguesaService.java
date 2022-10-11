@@ -20,6 +20,10 @@ public class HamburguesaService {
         return burguerRepository.findAll();
     }
 
+    public List<Hamburguesa> obternerOrdenadasPorID(){
+        return burguerRepository.obtenerBurguers();
+    }
+
     public Hamburguesa getById(int id){
         return burguerRepository.findById(id).orElse(null);
     }

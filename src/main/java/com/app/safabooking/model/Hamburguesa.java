@@ -1,5 +1,6 @@
 package com.app.safabooking.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class Hamburguesa {
     @JoinColumn(name = "id_hamburgueseria")
     private Hamburgueseria hamburgueseria;
 
+    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "hamburguesa_ingrediente",
