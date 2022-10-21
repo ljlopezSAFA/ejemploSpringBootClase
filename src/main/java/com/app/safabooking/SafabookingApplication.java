@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class SafabookingApplication {
+public class SafabookingApplication  {
 
     public static void main(String[] args) {
         SpringApplication.run(SafabookingApplication.class, args);
     }
+
+
 
 }

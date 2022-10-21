@@ -9,31 +9,24 @@
 
 
 <div class="row">
-    <form class="col s12" id="hamburguesa_form" action="/burguers/save" method="post" th:object="${hamburguesa}">
+    <form class="col s12" id="busqueda_form" action="/burguers/save" method="post" th:object="${busqueda}" >
         <div class="row">
             <div class="input-field col s6">
-                <input id="id" name="id" value="id" type="hidden" th:field="*{id}"/>
+                <label for="ciudad">Ciudad</label>
+                <input id="ciudad" name="ciudad"  type="text" placeholder=""/>
             </div>
             <div class="input-field col s6">
-                <label for="nombre">Nombre de la hambuerguesa:</label>
-                <input id="nombre" name="nombre" type="text" placeholder="" th:field="*{nombre}"/>
+                <label for="fechaInicio">FechaInicio</label>
+                <input id="fechaInicio" name="fechaInicio" type="date" placeholder=""/>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <label for="valor_calorico">Valor calórico de la hambuerguesa:</label>
-                <input id="valor_calorico" name="valor_calorico" th:field="*{valorCalorico}" type="number" placeholder=""/>
+            <div class="input-field col s6">
+                <label for="fechaFin">FechaFin</label>
+                <input id="fechaFin" name="fechaFin"  type="date" placeholder=""/>
             </div>
+
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <select>
-                    <option>Mac Donalds</option>
-                    <option>Burguer Kings</option>
-                    <option>TGB</option>
-                </select>
-            </div>
-        </div>
+
+        <input type="submit" value="Guardar">
     </form>
 </div>
 
